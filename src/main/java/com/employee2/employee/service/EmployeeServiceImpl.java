@@ -10,38 +10,36 @@ import java.util.*;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private final List<Employee> employeeList;
+    private final Map<String, Employee> employeeBook;
 
     public EmployeeServiceImpl() {
-        this.employeeList = new ArrayList<>(Arrays.asList(
-                new Employee("Василий", "Пупкин"),
-                new Employee("Анна", "Трубецкая"),
-                new Employee("Петр", " Корабелкин"),
-                new Employee("Ирина", "Иванова"),
-                new Employee("Семен", "Крупский"),
-                new Employee("Алексей", "Шабанов"),
-                new Employee("Зинаида", "Семенова"),
-                new Employee("Давид", "Мартиросян"),
-                new Employee("Анастасия", "Турцкевич"),
-                new Employee("Лидия", "Разумихина")));
+        this.employeeBook = new HashMap<>(Map.of(
+               "Василий Пупкин", new Employee("Василий", "Пупкин"),
+              "Анна Трубецкая",  new Employee("Анна", "Трубецкая"),
+               "Петр Корабелкин", new Employee("Петр", " Корабелкин"),
+               "Ирина Иванова", new Employee("Ирина", "Иванова"),
+               "Семен Крупский", new Employee("Семен", "Крупский"),
+               "Алексей Шабанов", new Employee("Алексей", "Шабанов"),
+               "Зинаила Семеновна", new Employee("Зинаида", "Семенова"),
+               "Давид Мартиросян", new Employee("Давид", "Мартиросян"),
+                "Анастасия Турцкевич", new Employee("Анастасия", "Турцкевич"),
+                "Лидия Разумихина", new Employee("Лидия", "Разумихина")));
 
 
     }
     @Override
     public  Employee add (String firstName,String lastName) {
         Employee employee = new Employee(firstName, lastName);
-        if (employeeList.contains(employee)) {
+        if (employeeBook. containsKey (employee.getFullName())) {
             throw new EmployeeAlreadyAddedException();
-        }
-        employeeList.add(employee);
-        return employee;
     }
+        employeeBook.put(employee.getFullName(), employee);
+        return employee;}
     @Override
     public  Employee remove(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
-        if (employeeList.contains(employee)) {
-            employeeList.remove(employee);
-            return employee;
+        if (employeeBook. containsKey (employee.getFullName())) {
+            return employeeBook.remove(employee.getFullName());
         }
         throw new EmployeeNotFoundException();
 }
@@ -49,14 +47,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee find(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
-        if (employeeList.contains(employee)) {
-            return employee;
+        if (employeeBook.containsKey(employee.getFullName())) {
+            return employeeBook.get(employee.getFullName());
         }
         throw new EmployeeNotFoundException();
 
     }
 @Override
     public Collection<Employee> getEmployees(String firstName, String lastName) {
-        return Collections.unmodifiableList(employeeList);
+        return Collections.unmodifiableCollection(employeeBook.values());
     }
 }

@@ -3,20 +3,24 @@ package com.employee2.employee.model;
 import java.util.Objects;
 
 public class Employee {
-    String festName;
+    String fistName;
     String lastName;
 
-    public Employee(String festName, String lastName) {
-        this.festName = festName;
+    public Employee(String fistName, String lastName) {
+        this.fistName = fistName;
         this.lastName = lastName;
     }
 
     public String getFestName() {
-        return festName;
+        return fistName;
     }
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getFullName() {
+        return fistName + " " + lastName;
     }
 
     @Override
@@ -24,18 +28,18 @@ public class Employee {
         if (this == o) return true;
         if (!(o instanceof Employee)) return false;
         Employee employee = (Employee) o;
-        return Objects.equals(festName, employee.festName) && Objects.equals(lastName, employee.lastName);
+        return Objects.equals(fistName, employee.fistName) && Objects.equals(lastName, employee.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(festName, lastName);
+        return Objects.hash(fistName, lastName);
     }
 
     @Override
     public String toString() {
         return "Employee{" +
-                "festName='" + festName + '\'' +
+                "fistName='" + fistName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
     }
