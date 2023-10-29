@@ -5,10 +5,31 @@ import java.util.Objects;
 public class Employee {
     String fistName;
     String lastName;
+    int department;
+    int salary;
 
-    public Employee(String fistName, String lastName) {
+    public Employee(String fistName, String lastName, int department, int salary) {
         this.fistName = fistName;
         this.lastName = lastName;
+        this.department = department;
+        this.salary = salary;
+
+    }
+
+    public int getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(int department) {
+        this.department = department;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
     }
 
     public String getFestName() {
@@ -36,12 +57,16 @@ public class Employee {
         return Objects.hash(fistName, lastName);
     }
 
+
     @Override
     public String toString() {
         return "Employee{" +
                 "fistName='" + fistName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", department=" + department +
+                ", salary=" + salary +
                 '}';
     }
 }
+
 
