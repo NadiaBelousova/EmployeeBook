@@ -1,5 +1,8 @@
 package com.employee2.employee.model;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Locale;
 import java.util.Objects;
 
 public class Employee {
@@ -9,12 +12,13 @@ public class Employee {
     int salary;
 
     public Employee(String fistName, String lastName, int department, int salary) {
-        this.fistName = fistName;
-        this.lastName = lastName;
+        this.fistName = StringUtils.capitalize(fistName.toLowerCase());
+        this.lastName = StringUtils.capitalize(lastName.toLowerCase());
         this.department = department;
         this.salary = salary;
 
     }
+
 
     public int getDepartment() {
         return department;
