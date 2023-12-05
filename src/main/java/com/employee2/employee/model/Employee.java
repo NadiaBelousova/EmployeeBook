@@ -1,22 +1,50 @@
 package com.employee2.employee.model;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Objects;
 
 public class Employee {
-    String festName;
+    String firstName;
     String lastName;
+    int department;
+    int salary;
 
-    public Employee(String festName, String lastName) {
-        this.festName = festName;
-        this.lastName = lastName;
+    public Employee(String firstName, String lastName, int department, int salary) {
+        this.firstName = StringUtils.capitalize(firstName.toLowerCase());
+        this.lastName = StringUtils.capitalize(lastName.toLowerCase());
+        this.department = department;
+        this.salary = salary;
+
     }
 
-    public String getFestName() {
-        return festName;
+
+    public int getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(int department) {
+        this.department = department;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public String getFirstName() {
+        return firstName;
     }
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
 
     @Override
@@ -24,20 +52,24 @@ public class Employee {
         if (this == o) return true;
         if (!(o instanceof Employee)) return false;
         Employee employee = (Employee) o;
-        return Objects.equals(festName, employee.festName) && Objects.equals(lastName, employee.lastName);
+        return Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(festName, lastName);
+        return Objects.hash(firstName, lastName);
     }
+
 
     @Override
     public String toString() {
         return "Employee{" +
-                "festName='" + festName + '\'' +
+                "fistName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", department=" + department +
+                ", salary=" + salary +
                 '}';
     }
 }
+
 
