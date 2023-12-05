@@ -12,4 +12,6 @@ public interface DepartmentService {
     Employee maxSalary(int department);
 
     Employee minSalary(int department);
+
+    int sumSalaryByDepartment(int department);
 }

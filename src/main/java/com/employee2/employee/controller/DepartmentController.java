@@ -18,20 +18,25 @@ public class DepartmentController {
         this.service = service;
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<?> getAllByDepartment(@RequestParam(required = false) Integer department) {
+    @GetMapping("/employees")
+    public ResponseEntity<?> getAll(@RequestParam(required = false) Integer department) {
         return department == null ?
                 ResponseEntity.ok(service.getAll()) :
                 ResponseEntity.ok(service.getAllByDepartment(department));
     }
 
-    @GetMapping("/max-salary")
+    @GetMapping("/max")
     public Employee maxSalary(@RequestParam Integer department) {
        return service.maxSalary(department);
     }
 
-    @GetMapping("/min-salary")
+    @GetMapping("/min")
     public Employee minSalary(@RequestParam Integer department) {
         return service.minSalary(department);
+    }
+
+    @GetMapping("/sumSalary")
+    public int sumSalaryByDepartment(@RequestParam Integer department) {
+        return service.sumSalaryByDepartment(department);
     }
 }
